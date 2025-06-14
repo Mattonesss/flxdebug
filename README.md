@@ -27,3 +27,14 @@ when you imported them you can actually add the fps counter doing this:
 var fpsCounter = new FlxDebug(0, 0, FlxColor.WHITE);
 add(fpsCounter);
 ```
+
+Else if you want to change the title or the position of the window (this only works in desktop not in html5) import this:
+```haxe
+import util.DebugUtil;
+```
+
+now once you done go into the playstate and add these lines for the position and the title:
+```haxe
+DebugUtil.setWindowTitle("your custom title");
+DebugUtil.setWindowPosition(100, 200);
+```
