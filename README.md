@@ -13,6 +13,11 @@ If you want you can use the git version but first check if installed and type `h
 
 # How To Use It
 
+First import the FlxDebug into the xml file:
+```xml
+<haxelib name="flxdebug" />
+```
+
 Whith it you can actually create an fps counter with memory counter, display of the current state and the haxeflixel version, for do this first import flxdebug using:
 ```haxe
 import FlxDebug;
