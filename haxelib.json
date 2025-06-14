@@ -1,0 +1,12 @@
+{
+  "name": "flxdebug",
+  "url": "https://github.com/Mattonesss/flxdebug/",
+  "license": "MIT",
+  "tags": ["haxeflixel", "flixel", "haxe"],
+  "description": "An HaxeFlixel library that allows you to access and change debug features.",
+  "version": "1.0.0",
+  "classPath": "src",
+  "releasenote": "Initial release.",
+  "contributors": ["Mattonesss"],
+  "dependencies": {}
+}
