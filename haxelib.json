@@ -4,9 +4,9 @@
   "license": "MIT",
   "tags": ["haxeflixel", "flixel", "haxe"],
   "description": "An HaxeFlixel library that allows you to access and change debug features.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "classPath": "src",
-  "releasenote": "Initial release.",
+  "releasenote": "New Stable Release, but it's not completed at all.",
   "contributors": ["Mattonesss"],
   "dependencies": {}
 }
