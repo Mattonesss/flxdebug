@@ -4,35 +4,24 @@
 
 # FlxDebug
 
-FlxDebug is an open source [HaxeFlixel](https://haxeflixel.com) library that consist to allow to the user to have access to debug features.
+FlxDebug is an open source library focused to help the developer when making games, avaible with [HaxeFlixel](https://haxeflixel.com).
 
-# Installing
+It can be useful for example when you want an memory counter on your screen, with this you can do it, or open an url, yes, you can just do it with this.
+For now it's in developement so i(the developer) i'm trying to make flxdebug more powerful for every developer and every game.
 
-You can actually download it using `haxelib install flxdebug` on your command prompt.
-If you want you can use the git version but first check if installed and type `haxelib git flxdebug https://www.github.com/Mattonesss/flxdebug/` on the command prompt.
+If you want to download it you can just go on your terminal and use `haxelib install flxdebug` or if you want you can install the [Git](https://git-scm.com/downloads) version with `haxelib git flxdebug https://www.github.com/Mattonesss/flxdebug/`.
 
-# How To Use It
+If you want direct support or questions you can contact Mattonesss on [Discord](https://discord.com/users/1165240636992135231)
 
-Whith it you can actually create an fps counter with memory counter, display of the current state and the haxeflixel version, for do this first import flxdebug on the xml and on the playstate using:
+## FPS Counter
+
+For use the FPS Counter support of FlxDebug you will need to first import them on your xml project file and on your script file (like PlayState), when you done you can actually create an FPS Counter doing
 ```haxe
-//Xml
-<haxelib name="flxdebug"/>
-
-//PlayState
-import FlxDebug;
+    var fpsCounter = new FlxDebug(0, 0, 0x000000, "assets/fonts/comicsans.ttf");
+    add(fpsCounter);
 ```
-when you imported them you can do a lot of things like create an fps counter, to create one you need to create them with this:
+else you can change the max fps in game using
 ```haxe
-var fpsCounter = new FlxDebug(0, 0, FlxColor.WHITE);
-add(fpsCounter);
+    FlxDebug.setMaxFPS(60);
 ```
-once you do it and build your game if you can see there is the fps counter, if you want to hide press F1.
-
-If you want to trace the memory in use you can actually do this:
-```haxe
-trace(FlxDebug.getMemoryUsate());
-```
-or if you want to set an max fps amount you can do this:
-```haxe
-FlxDebug.setMaxFPS(60);
-```
+if you want more expaining you can go [Here](docs/USING_FLXDEBUG.md)
