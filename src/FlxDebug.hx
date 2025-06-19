@@ -23,6 +23,61 @@ class FlxDebug extends FlxText
     static public var fps:Int;
 
     /**
+     * This var is used for the default settings that first are to be setted and after you can apply them.
+     */
+    static public var settings_defaultFont:Null<String> = null;
+
+    /**
+     * This var is used for the default settings that first are to be setted and after you can apply them.
+     */
+    static public var settings_defaultSize:Null<Int> = null;
+
+    /**
+     * This var is used for the default settings that first are to be setted and after you can apply them.
+     */
+    static public var settings_defaultColor:Null<Int> = null;
+
+    /**
+     * This var is used for the default settings that first are to be setted and after you can apply them.
+     */
+    static public var settings_maxMemoryUsage:Null<Int> = null;
+
+    /**
+     * This var is used for the default settings that first are to be setted and after you can apply them.
+     */
+    static public var defaultFps:Null<Int> = null;
+
+    /**
+     * This var is used to be the principally font of the fps counter.
+     */
+    static public var defaultFont:Null<String> = null;
+
+    /**
+     * This var is used to be the default size of the fps counter.
+     */
+    static public var defaultSize:Null<Int> = null;
+
+    /**
+     / This var is used to be the default color of the fps counter.
+     */
+    static public var defaultColor:Int = null;
+
+    /**
+     * This var is used to be the default color of the fps counter when the ram usage is more than his limit.
+     */
+    static public var redDefaultColor:Int = 0xFF0000;
+
+    /**
+     * This var is used to be the max memory usage, if the ram reach the var value the game try to lower the memory usage.
+     */
+    static public var maxMemoryUsage:Int = 1000;
+
+    /**
+     * If the fps in game are low than this value here the fps counter will be red.
+     */
+    static public var minFps:Int = 25;
+
+    /**
      * The memory var is used to be displayed as a text in the game.
      * But it can be used for more.
      */
@@ -123,6 +178,10 @@ class FlxDebug extends FlxText
     {
         super(x, y);
 
+        defaultFont = textFont;
+        defaultColor = textColor;
+        defaultSize = 16;
+
         text = "";
         size = 16;
         font = textFont;
@@ -158,6 +217,18 @@ class FlxDebug extends FlxText
         if (FlxG.keys.anyJustPressed([F1]))
         {
             showFpsCounter = !showFpsCounter;
+        }
+
+        if (maxMemoryUsage != null)
+        {
+            if (memory >= maxMemoryUsage || fps <= minFps)
+            {
+                changeTextStyle(defaultFont, defaultSize, redDefaultColor);
+            }
+            else 
+            {
+                changeTextStyle(defaultFont, defaultSize, defaultColor);
+            }
         }
     }
 
@@ -214,6 +285,14 @@ class FlxDebug extends FlxText
     }
 
     /**
+     * Get the actual value of fps in the moment you use it.
+     */
+    static public function getFPS():Int
+    {
+        return fps;
+    }
+
+    /**
      * Change the window title, can be used on an html5 or on a desktop target.
      */
     static public function setWindowTitle(nameTitle:String):Void
@@ -249,6 +328,25 @@ class FlxDebug extends FlxText
         FlxG.drawFramerate = value;
         FlxG.updateFramerate = value;
         trace("MAX FPS SETTED TO: " + value);
+    }
+
+    /**
+     * Set the lowest fps value in the game.
+     * When the fps counter reach this value it well be red.
+     */
+    static public function setLowestFPS(value:Int):Void
+    {
+        minFps = value;
+    }
+
+    /**
+     * Set the max ram usage, when the ram reach the value the game this function try to lower the memory usage.
+     * In the fps counter if the ram usage reach the value the color will be red.
+     */
+    static public function setHighMemoryUsage(value:Int)
+    {
+        maxMemoryUsage = value;
+        trace("NEW MAX HIGH MEMORY USAGE SETTED TO: " + value);
     }
 
     /**
@@ -290,6 +388,33 @@ class FlxDebug extends FlxText
         #else
         trace("Error: " + Std.string(error));
         #end
+    }
+
+    /**
+     * This function sets the default settings that can be setted and applied in the game.
+     * Can be very important if in a game you want a button that restores the default settings.
+     */
+    static public function setDefaultSettings(maxFPS:Int, newMaxMemory:Int, newDefaultFont:String, newDefaultSize:Int, newDefaultColor:Int)
+    {
+        defaultFps = maxFPS;
+        settings_maxMemoryUsage = newMaxMemory;
+        settings_defaultFont = newDefaultFont;
+        settings_defaultSize = newDefaultSize;
+        settings_defaultColor = newDefaultColor;
+        trace("SETTED DEFAULT SETTINGS");
+    }
+
+    /**
+     * Apply the default settings, so apply all the settings setted before, if you try to use this without setted anything the game can crash.
+     */
+    static public function applyDefaultSettings()
+    {
+        setMaxFPS(defaultFps);
+        maxMemoryUsage = settings_maxMemoryUsage;
+        defaultFont = settings_defaultFont;
+        defaultSize = settings_defaultSize;
+        defaultColor = settings_defaultColor;
+        trace("APPLIED DEFAULT SETTINGS");
     }
 }
 

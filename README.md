@@ -24,4 +24,4 @@ else you can change the max fps in game using
 ```haxe
     FlxDebug.setMaxFPS(60);
 ```
-if you want more expaining you can go [Here](docs/USING_FLXDEBUG.md)
+if you want more expaining you can go [Here](docs/USING_FLXDEBUG.md) and you can join on the official [FlxDebugServerDiscord](https://discord.gg/PUXefWWgJy)
