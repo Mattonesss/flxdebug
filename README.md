@@ -5,15 +5,16 @@
 
 > **Note:** FlxDebug is not recommended for HTML5 projects.  
 > It may cause crashes or unexpected behavior. Use it on **desktop platforms only**.
+>
+> **Other Note:** FlxDebug it's still in work in progress :)
 
 ---
 
 ## Features
 
-### FPS Counter
+### Extra Things
 
-To add a custom FPS counter to your HaxeFlixel game:
-
+To add a custom FPS counter to your HaxeFlixel game do
 ```haxe
 var fpsVar = new FlxDebug(x, y, textcolor, textfont);
 add(fpsVar);
@@ -21,6 +22,18 @@ add(fpsVar);
 
 else if you want you can add default settings, like default fps, an max memory usage and more, and when you setted all the settings you can apply them with:
 ```haxe
-setDefaultSettings(maxFPS:Int, newMaxMemory:Int, newDefaultFont:String, newDefaultSize:Int, newDefaultColor:Int)
-applyDefaultSettings()
+setDefaultSettings(maxFPS:Int, newMaxMemory:Int, newDefaultFont:String, newDefaultSize:Int, newDefaultColor:Int);
+applyDefaultSettings();
 ```
+
+If you want to read an json file you can easely do
+```haxe
+readJSONFile(file:String, receive:String);
+```
+in this case the file is readed and in receive you need to write what you want to be returned by the json file,
+else if you want to read any custom file you can do that with path usage, a function that you can easely express it with
+If you want to read an json file you can easely do
+```haxe
+getPath(path:String, fileName:String)
+```
+but you can do more, you can do 'getPath' and the folder that there is the file like 'getDataPath', in this case you need only to insert the file name.
