@@ -1,5 +1,5 @@
 # FlxDebug
-[![Haxelib Haxeflixel](https://badgen.net/haxelib/d/flixel?color=blue)](https://lib.haxe.org/p/flxdebug/))
+[![FlxDebug](https://badgen.net/haxelib/d/flxdebug?color=blue)](https://lib.haxe.org/p/flxdebug/)
 
 **FlxDebug** is a lightweight debugging utility for [HaxeFlixel](https://haxeflixel.com/) that helps developers enhance their games with custom FPS counters and useful diagnostics.
 
