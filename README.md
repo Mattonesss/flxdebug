@@ -8,11 +8,11 @@
 >
 > **Other Note:** FlxDebug it's still in work in progress :)
 
+To download FlxDebug you can use the stable version and the git version, i suggested the stable, to do it you need to do 'haxelib install flxdebug' or 'haxelib git https://github.com/Mattonesss/flxdebug/'
+
 ---
 
 ## Features
-
-### Extra Things
 
 To add a custom FPS counter to your HaxeFlixel game do
 ```haxe
