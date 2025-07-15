@@ -1,27 +1,25 @@
-<p align="center">
-    <img src="./terminalIcon.png" width="500" alt="Terminal Logo."/> 
-</p>
-
 # FlxDebug
 
-FlxDebug is an open source library focused to help the developer when making games, avaible with [HaxeFlixel](https://haxeflixel.com).
+**FlxDebug** is a lightweight debugging utility for [HaxeFlixel](https://haxeflixel.com/) that helps developers enhance their games with custom FPS counters and useful diagnostics.
 
-It can be useful for example when you want an memory counter on your screen, with this you can do it, or open an url, yes, you can just do it with this.
-For now it's in developement so i(the developer) i'm trying to make flxdebug more powerful for every developer and every game.
+> ⚠️ **Note:** FlxDebug is not recommended for HTML5 projects.  
+> It may cause crashes or unexpected behavior. Use it on **desktop platforms only**.
 
-If you want to download it you can just go on your terminal and use `haxelib install flxdebug` or if you want you can install the [Git](https://git-scm.com/downloads) version with `haxelib git flxdebug https://www.github.com/Mattonesss/flxdebug/`.
+---
 
-If you want direct support or questions you can contact Mattonesss on [Discord](https://discord.com/users/1165240636992135231)
+## Features
 
-## FPS Counter
+### 📊 FPS Counter
 
-For use the FPS Counter support of FlxDebug you will need to first import them on your xml project file and on your script file (like PlayState), when you done you can actually create an FPS Counter doing
+To add a custom FPS counter to your HaxeFlixel game:
+
 ```haxe
-    var fpsCounter = new FlxDebug(0, 0, 0x000000, "assets/fonts/comicsans.ttf");
-    add(fpsCounter);
+var fpsVar = new FlxDebug(x, y, textcolor, textfont);
+add(fpsVar);
 ```
-else you can change the max fps in game using
+
+else if you want you can add default settings, like default fps, an max memory usage and more, and when you setted all the settings you can apply them with:
 ```haxe
-    FlxDebug.setMaxFPS(60);
+setDefaultSettings(maxFPS:Int, newMaxMemory:Int, newDefaultFont:String, newDefaultSize:Int, newDefaultColor:Int)
+applyDefaultSettings()
 ```
-if you want more expaining you can go [Here](docs/USING_FLXDEBUG.md) and you can join on the official [FlxDebugServerDiscord](https://discord.gg/PUXefWWgJy)
