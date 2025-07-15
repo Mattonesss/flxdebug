@@ -3,14 +3,14 @@
 
 **FlxDebug** is a lightweight debugging utility for [HaxeFlixel](https://haxeflixel.com/) that helps developers enhance their games with custom FPS counters and useful diagnostics.
 
-> ⚠️ **Note:** FlxDebug is not recommended for HTML5 projects.  
+> **Note:** FlxDebug is not recommended for HTML5 projects.  
 > It may cause crashes or unexpected behavior. Use it on **desktop platforms only**.
 
 ---
 
 ## Features
 
-### 📊 FPS Counter
+### FPS Counter
 
 To add a custom FPS counter to your HaxeFlixel game:
 
