@@ -1,21 +1,129 @@
 package;
 
+import Reflect;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import haxe.Json;
 import openfl.Lib;
 import openfl.system.System;
-#if desktop
 import sys.io.File;
 import sys.io.FileOutput;
-#end
 
 /**
- * The class that helps the development of a game, creating fps counter and much more.
+ * ## FlxDebug
+ * FlxDebug can help developers to create their own games, with custom fps counters
+ * and much more helpful things.
+ *
+ * I don't suggest to use this library if you want to create an html5
+ * game, if you try the game can crash or have issues.
+ * I suggest to use only desktop platforms.
+ *
+ * ## Read JSON File
+ * If you want to read a json file you can use the readJSONFile function, you need to
+ * insert the path of the file and what you want to receive from that file.
+ * ```haxe
+ * readJSONFile(filePath, receive)
+ * ```
+ * this read the file
+ * and return the levelName info from the file.
+ * This can be so helpful if you use json to create levels in your game.
+ *
+ * ## Create an FPS counter
+ * If you want to add an fps counter on your haxeflixel game you can do it!
+ * ```haxe
+ * var fpsVar = new FlxDebug(x, y, textcolor, textfont)
+ * ```
+ * this fps counter display the fps, memory usage, state in use and the haxeflixel version.
+ *
+ * ## Save custom logs
+ * If you want to save logs for your game you can easely do it with:
+ * ```haxe
+ * save_Log(message, level, path)
+ * ```
+ * in this case there are
+ * three levels of logs: 'LOG, WARNING, ERROR', log is an normal log,
+ * warning is an log that display an future error, and error can be a crash.
+ *
+ * ## Issues
+ * If you find any strange bug in flxdebug you can add an issue on the official github page.
+ *
+ * ## Github Page
+ * If you want you can see the github page for more examples of how to use flxdebug
+ * @see https://github.com/Mattonesss/flxdebug/blob/main/src/FlxDebug.hx/
+ * @version 1.2.0
  */
 class FlxDebug extends FlxText
 {
+    /**
+     * This function can help to pause and reactive the game in any moment.
+     * NOTE: If there is any probrem try to report the issue on the github page
+     * @see https://github.com/Mattonesss/flxdebug/blob/main/src/FlxDebug.hx/
+     *
+     * @since 1.2.0
+     */
+    static public function togglePause()
+    {
+        FlxG.pause = !FlxG.paused;
+    }
+
+    /**
+     * This function can help to change a value from a json file from another one.
+     *
+     * NOTE: If the game crash try to see if you put the correct path of the file,
+     * if continue to crash try to report the issue on the github page
+     * @see https://github.com/Mattonesss/flxdebug/blob/main/src/FlxDebug.hx/
+     *
+     * @param  file    The file path.
+     * @param  key     The information to change of the json file.
+     * @param  value   The new value.
+     *
+     * @since 1.2.0
+     */
+    static public function changeJSONValue(file:String, key:String, value:String)
+    {
+        #if desktop
+        var fileContent = File.getContent(file);
+        var fileData = Json.parse(fileContent);
+        Reflect.setField(fileData, key, value);
+
+        var newContent = Json.stringify(fileData, null, "   ");
+        File.saveContent(file, newContent);
+        #else
+        trace("`readJSONFile` is not avaible on this platform");
+        #end
+    }
+
+    /**
+     * This var contain the key that toggle the fps counter.
+     * @since 1.2.0
+     */
+    static public var toggleKey:String = 'F1';
+
+    /**
+     * This function can help developers to read Json file.
+     * This can also help to have more space in the code.
+     *
+     * NOTE: If the game crash try to see if you put the correct path of the file.
+     *
+     * @param  file    The file path.
+     * @param  receive The information that you want to receive from the file.
+     * @return The value of the information of the json file.
+     *
+     * @since 1.2.0
+     */
+    static public function readJSONFile(file:String, receive:String)
+    {
+        #if desktop
+        var fileContent = File.getContent(file);
+        var fileData = Json.parse(fileContent);
+        return Reflect.field(fileData, receive);
+        #else
+        trace("`readJSONFile` is not avaible on this platform");
+        #end
+    }
+
     /**
      * The fps var is used to be visualized as a text in the game.
      * But it can be used for more. 'Default FPS: 60
@@ -64,6 +172,7 @@ class FlxDebug extends FlxText
 
     /**
      * This var is used to be the default color of the fps counter when the ram usage is more than his limit.
+     * @since 1.1.1
      */
     static public var redDefaultColor:Int = 0xFF0000;
 
@@ -128,6 +237,7 @@ class FlxDebug extends FlxText
     /**
      * Returns the path of the file in the data folder.
      * Can be used to import graphics without insert all the destination of the file.
+     * @since 1.1.0
      */
     static public function getDataPath(fileName:String):String
     {
@@ -137,6 +247,7 @@ class FlxDebug extends FlxText
     /**
      * Returns the path of the file in the images folder.
      * Can be used to import graphics without insert all the destination of the file.
+     * @since 1.1.0
      */
     static public function getImagesPath(fileName:String):String
     {
@@ -146,6 +257,7 @@ class FlxDebug extends FlxText
     /**
      * Returns the path of the file in the music folder.
      * Can be used to import graphics without insert all the destination of the file.
+     * @since 1.1.0
      */
     static public function getMusicPath(fileName:String):String
     {
@@ -155,6 +267,7 @@ class FlxDebug extends FlxText
     /**
      * Returns the path of the file in the sound folder.
      * Can be used to import graphics without insert all the destination of the file.
+     * @since 1.1.0
      */
     static public function getSoundPath(fileName:String):String
     {
@@ -164,6 +277,7 @@ class FlxDebug extends FlxText
     /**
      * Returns into a custom path.
      * Can be used to import graphics without insert all the destination of the file.
+     * @since 1.1.0
      */
     static public function getPath(path:String, fileName:String):String
     {
@@ -174,7 +288,7 @@ class FlxDebug extends FlxText
      * Create a new text displaying an fps counter.
      * Including memory and the state in use.
      */
-    public function new(x:Float, y:Float, textColor:Int, textFont:String)
+    public function new(x:Float = 0, y:Float = 0, textColor:Int = 0xFFFFFF, textFont:String = null)
     {
         super(x, y);
 
@@ -192,6 +306,7 @@ class FlxDebug extends FlxText
 
     /**
      * The update function, used for the fps counter and more.
+     * @since 1.0.0
      */
     override public function update(elapsed:Float)
     {
@@ -214,7 +329,7 @@ class FlxDebug extends FlxText
         }
 
         // Hide or show the fps counter with this key. If you want you can add more keys.
-        if (FlxG.keys.anyJustPressed([F1]))
+        if (FlxG.keys.anyJustPressed([toggleKey]))
         {
             showFpsCounter = !showFpsCounter;
         }
@@ -393,6 +508,7 @@ class FlxDebug extends FlxText
     /**
      * This function sets the default settings that can be setted and applied in the game.
      * Can be very important if in a game you want a button that restores the default settings.
+     * @since 1.1.1
      */
     static public function setDefaultSettings(maxFPS:Int, newMaxMemory:Int, newDefaultFont:String, newDefaultSize:Int, newDefaultColor:Int)
     {
@@ -406,6 +522,7 @@ class FlxDebug extends FlxText
 
     /**
      * Apply the default settings, so apply all the settings setted before, if you try to use this without setted anything the game can crash.
+     * @since 1.1.1
      */
     static public function applyDefaultSettings()
     {
